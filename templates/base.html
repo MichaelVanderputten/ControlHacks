@@ -28,12 +28,20 @@
             <li><a href = "{{ url_for('flash_cards.createFC') }}">Create</a></li>
             <li><a href = "{{ url_for('base.aboutUs') }}">About Us</a></li>
         </ul>
+    </header>
         <div class="body-block">
             {% block body %}
 
             {% endblock %}
         </div>
-    </header>
+
+
+        <div class="body-scripts">
+            {% block scripts %}
+
+            {% endblock %}
+        </div>
+    
 </body>
 
 </html>
