@@ -8,3 +8,8 @@ from . import flash_cards_blueprint # blueprint
 def home():
     return render_template('flashCards/home.html')
 
+@flash_cards_blueprint.route('/create')
+@login_required
+def createFC():
+    return render_template('flashCards/createFC.html')
+

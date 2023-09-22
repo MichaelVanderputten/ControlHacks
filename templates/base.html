@@ -25,7 +25,7 @@
                 <li><a href="{{ url_for('user.login') }}">Log In</a></li>
                 <li><a href="{{ url_for('user.register') }}">Register</a></li>
             {% endif %} <!-- user not logged in -->
-            <li><a href = "#">Create</a></li>
+            <li><a href = "{{ url_for('flash_cards.createFC') }}">Create</a></li>
             <li><a href = "{{ url_for('base.aboutUs') }}">About Us</a></li>
         </ul>
         <div class="body-block">
