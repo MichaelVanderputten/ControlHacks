@@ -58,9 +58,14 @@ li a:hover:not(.active) {
 <body>
 
   <ul>
-    <li style="float:left"><a href = "#">Home</a</li>
-    <li><a href = "#">Login</a></li>
-    <li><a href = "#">LogOut</a></li>
+    <li style="float:left"><a href = "{{ url_for('home.home') }}">Home</a</li>
+    {% if current_user.is_authenticated %}
+        <li><a href="{{ url_for('user.logout') }}">Log Out</a></li>
+        <li><a href="#">Profile</a></li>
+    {% else %}
+        <li><a href="{{ url_for('user.login') }}">Log In</a></li>
+        <li><a href="{{ url_for('user.register') }}">Register</a></li>
+    {% endif %}
     <li><a href = "#">FlashCards</a></li>
     <li><a href = "#">About Us</a></li>
   </ul>
