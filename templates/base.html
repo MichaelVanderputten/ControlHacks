@@ -7,72 +7,33 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet"> 
-  <title>nav bar</title>
-  <style>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/base.css') }}">
+  {% block head %}
 
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #1cb800;
-  border-radius: 25px;
-}
-
-li {
-  float: right;
-  border-left:1px solid #ffffff;
-  font-family: 'Varela Round', sans-serif;
-
-}
-
-li :first-child{
-  border-right:1px solid #ffffff;
-  padding-left: 40px;
-}
-li :last-child{
-    
-    padding-right:40px;
-}
-
-li a {
-  display: block;
-  color: white;
-  font-size: 20px ;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-li a:hover:not(.active) {
-  background-color: #111;
-}
-
-.active {
-  background-color: #04AA6D;
-}
-
-  </style>
+  {% endblock head %}
+  <title>{% block title %}{% endblock title %}</title>
 </head>
 
 <body>
+    <header>
+        <ul>
+            <li style="float:left"><a href = "{{ url_for('home.home') }}">Home</a</li>
+            {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('user.logout') }}">Log Out</a></li>
+                <li><a href="#">Profile</a></li>
+            {% else %} <!-- user logged in -->
+                <li><a href="{{ url_for('user.login') }}">Log In</a></li>
+                <li><a href="{{ url_for('user.register') }}">Register</a></li>
+            {% endif %} <!-- user not logged in -->
+            <li><a href = "#">Create</a></li>
+            <li><a href = "#">About Us</a></li>
+        </ul>
+        <div class="body-block">
+            {% block body %}
 
-  <ul>
-    <li style="float:left"><a href = "{{ url_for('home.home') }}">Home</a</li>
-    {% if current_user.is_authenticated %}
-        <li><a href="{{ url_for('user.logout') }}">Log Out</a></li>
-        <li><a href="#">Profile</a></li>
-    {% else %}
-        <li><a href="{{ url_for('user.login') }}">Log In</a></li>
-        <li><a href="{{ url_for('user.register') }}">Register</a></li>
-    {% endif %}
-    <li><a href = "#">FlashCards</a></li>
-    <li><a href = "#">About Us</a></li>
-  </ul>
-  {% block body %}
-
-  {% endblock %}
-
+            {% endblock %}
+        </div>
+    </header>
 </body>
 
 </html>
