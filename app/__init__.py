@@ -19,6 +19,8 @@ def create_app():
     migrate.init_app(app, db)
 
     # blueprints here
+    from .base.views import base_bp
+    app.register_blueprint(base_bp, url_prefix='/home')
 
     #any login stuff here
 
