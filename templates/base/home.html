@@ -1,1 +1,29 @@
-Home Page
+{% extends "base.html" %}
+
+    {% block body %}
+    <header>
+        <title>homepage</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet"> 
+        <style>
+            body{
+                background-color: rgb(172, 254, 151);
+            }
+
+            h1{
+                text-align: center;
+                font-size: 120px;
+                color: white;
+                text-shadow: 50px, 50px, 65px, #000000;
+                
+            }
+        </style>
+    </header>
+  
+
+    
+        <h1 style= "margin-top: 200px; text-shadow: 50px, 50px, 65px, #000000;">Welcome to LuoDingo</h1>
+
+
+    {% endblock %}

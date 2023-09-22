@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet"> 
+  <title>nav bar</title>
+  <style>
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #1cb800;
+  border-radius: 25px;
+}
+
+li {
+  float: right;
+  border-left:1px solid #ffffff;
+  font-family: 'Varela Round', sans-serif;
+
+}
+
+li :first-child{
+  border-right:1px solid #ffffff;
+  padding-left: 40px;
+}
+li :last-child{
+    
+    padding-right:40px;
+}
+
+li a {
+  display: block;
+  color: white;
+  font-size: 20px ;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #04AA6D;
+}
+
+  </style>
+</head>
+
+<body>
+
+  <ul>
+    <li style="float:left"><a href = "#">Home</a</li>
+    <li><a href = "#">Login</a></li>
+    <li><a href = "#">LogOut</a></li>
+    <li><a href = "#">FlashCards</a></li>
+    <li><a href = "#">About Us</a></li>
+  </ul>
+  {% block body %}
+
+  {% endblock %}
+
+</body>
+
+</html>
