@@ -17,7 +17,7 @@
 <body>
     <header>
         <ul>
-            <li style="float:left"><a href = "{{ url_for('home.home') }}">Home</a</li>
+            <li style="float:left"><a href = "{{ url_for('flash_cards.home') }}">Home</a</li>
             {% if current_user.is_authenticated %}
                 <li><a href="{{ url_for('user.logout') }}">Log Out</a></li>
                 <li><a href="#">Profile</a></li>
@@ -26,7 +26,7 @@
                 <li><a href="{{ url_for('user.register') }}">Register</a></li>
             {% endif %} <!-- user not logged in -->
             <li><a href = "#">Create</a></li>
-            <li><a href = "#">About Us</a></li>
+            <li><a href = "{{ url_for('base.aboutUs') }}">About Us</a></li>
         </ul>
         <div class="body-block">
             {% block body %}

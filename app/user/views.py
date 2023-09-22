@@ -1,6 +1,6 @@
 from flask import render_template, redirect, url_for, Blueprint, request, current_app, flash # flask
 
-from flask_login import login_user, current_user, logout_user
+from flask_login import login_user, current_user, logout_user, login_required
 from werkzeug.security import check_password_hash # login stuff
 
 from app.user.forms import RegistrationForm
@@ -9,7 +9,7 @@ from app.user.models import User
 from app import db
 from app.__init__ import bcrypt # app stuff
 
-user_blueprint = Blueprint('user', __name__) # blueprint
+from . import user_blueprint # blueprint
 
 @user_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
@@ -20,16 +20,17 @@ def login():
         if user and bcrypt.check_password_hash(user.password_hash, form.password.data):
             login_user(user, remember=form.remember.data)
             flash('Login successful!', 'success')
-            return redirect(url_for('home.home'))  # login success
+            return redirect(url_for('flash_cards.home'))  # login success
         else:
             flash('Login Unsuccessful. Please check first name and password', 'danger')  # Changed from email to first name
     return render_template('user/login.html', title='Login', form=form)
 
 @user_blueprint.route('/logout')
+@login_required
 def logout():
     logout_user()
     flash('You have been logged out.', 'success')
-    return redirect(url_for('user.login'))
+    return redirect(url_for('base.aboutUs'))
 
 @user_blueprint.route("/register", methods=['GET', 'POST'])
 def register():

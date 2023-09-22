@@ -2,8 +2,8 @@ from flask import render_template, redirect, url_for, Blueprint, request, curren
 from app.__init__ import bcrypt
 
 
-base_bp = Blueprint('home', __name__)
+from . import base_blueprint # blueprint
 
-@base_bp.route('/')
-def home():
-    return render_template('base/home.html')
+@base_blueprint.route('/aboutUs')
+def aboutUs():
+    return render_template('base/aboutUs.html')
