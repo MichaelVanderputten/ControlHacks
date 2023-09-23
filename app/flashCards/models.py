@@ -27,3 +27,20 @@ class FlashCard(db.Model):
 
     def __repr__(self):
         return f'<FlashCard {self.question}>'
+
+
+def init_db():
+    db.create_all()
+
+    # Create a test deck
+    #deck = Deck('name',)
+    #new_user.display_name = 'Nathan'
+    #db.session.add(new_user)
+    #db.session.commit()
+
+    #new_user.datetime_subscription_valid_until = datetime.datetime(2019, 1, 1)
+    db.session.commit()
+
+
+if __name__ == '__main__':
+    init_db()

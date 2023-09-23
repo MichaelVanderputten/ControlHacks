@@ -1,5 +1,4 @@
 from flask import Flask # flask
-
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt # database stuff
@@ -43,4 +42,8 @@ def create_app():
         from .user.models import User
         return User.query.get(int(user_id))
     return app
+
+
+
+    
 

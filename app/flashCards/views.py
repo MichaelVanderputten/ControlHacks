@@ -1,55 +1,66 @@
 from flask import render_template, redirect, url_for, flash, request, current_app
 from flask_login import current_user, login_required
 
-from .forms import CreateDeckForm
+
+from .forms import CreateDeckForm, CreateFlashCards
 from .models import Deck, FlashCard
 from app import db
 
+
 from . import flash_cards_blueprint # blueprint
+
 
 @flash_cards_blueprint.route('/home')
 @login_required
 def home():
-    return render_template('flashCards/home.html')
+   allDecks = Deck.query.all()
+   return render_template('flashCards/home.html', allDecks = allDecks)
 
-@flash_cards_blueprint.route('/create')
+
+@flash_cards_blueprint.route('/view_Deck/<int:deck_id>')
 @login_required
-def createFC():
-    return render_template('flashCards/createFC.html')
+def view_Deck(deck_id):
+   deck = Deck.query.get_or_404(deck_id)
+   flashcards = deck.flashCard
+   return render_template('view_deck.html', deck=deck, flashcards=flashcards)# use this to diplay the correct set of flash cards
+
+
 
 @flash_cards_blueprint.route('/create_deck', methods=['GET', 'POST'])
+@login_required
 def create_deck():
-    form = CreateDeckForm()
-    if form.validate_on_submit():
-        new_deck = Deck(
-            name=form.name.data,
-            private=form.private.data,
-            creator_id=1  # Replace this later with logged-in user ID
-        )
-        db.session.add(new_deck)
-        db.session.flush()
+   form = CreateDeckForm()
+   if form.validate_on_submit():
+       deck = Deck(
+           name=form.name.data,
+           private=form.private.data,
+           creator_id=1  # Replace this later with logged-in user ID
+       )
+       db.session.add(deck)
+       db.session.flush()
 
-        num_cards = form.num_cards.data
-        flash_cards = []
 
-        for i in range(1, num_cards + 1):
-            question = request.form.get(f'question{i}')
-            answer = request.form.get(f'answer{i}')
+       return redirect(url_for('flashCards.home'))
+  
+   return render_template('flashCards/create_deck.html', form=form)# creates a new deck
 
-            if question and answer:
-                flash_card = FlashCard(
-                    question=question, 
-                    answer=answer, 
-                    deck_id=new_deck.id, 
-                    creator_id=1
-                )
-                flash_cards.append(flash_card)
 
-        db.session.add_all(flash_cards)
-        db.session.commit()
+@flash_cards_blueprint.route('/create_Flash_Cards/<int:deck_id>', methods=['GET', 'POST'])
+@login_required
+def create_Flash_Cards(deck_id):
+   deck = Deck.query.get_or_404(deck.id)
+   form = CreateFlashCards()
+   if form.validate_on_submit():
+       flashCard = FlashCard(
+           question = form.question.data,
+           answer = form.answer.data,
+           deck_id= deck.id
+   )
+       db.session.add(flashCard)
+       db.session.commit()
+       flash('Flash card successfully added to the deck')
 
-        flash('New deck and flashcards created successfully.')
-        return redirect(url_for('index'))
 
-    return render_template('create_deck.html', form=form)
-
+       return redirect(url_for('flashCards.view_deck', deck_id = deck_id))
+  
+   return render_template('flashCards/createFC.html', form = form)# this def creates new flashcards in the set selected

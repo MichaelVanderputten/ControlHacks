@@ -8,3 +8,9 @@ class CreateDeckForm(FlaskForm):
     private = BooleanField('Private')
     num_cards = IntegerField('Number of Cards', validators=[DataRequired()])
     submit = SubmitField('Create Deck')
+
+
+class CreateFlashCards(FlaskForm):
+   question = StringField('question', validators = [DataRequired()])
+   answer = StringField('answer', validators = [DataRequired()])
+   submit = SubmitField('Create flashCard')

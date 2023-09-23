@@ -20,12 +20,13 @@
             <li style="float:left"><a href = "{{ url_for('flash_cards.home') }}">Home</a</li>
             {% if current_user.is_authenticated %}
                 <li><a href="{{ url_for('user.logout') }}">Log Out</a></li>
+                <li><a href = "{{ url_for('flash_cards.create_deck') }}">Create</a></li>
                 <li><a href="#">Profile</a></li>
             {% else %} <!-- user logged in -->
                 <li><a href="{{ url_for('user.login') }}">Log In</a></li>
                 <li><a href="{{ url_for('user.register') }}">Register</a></li>
             {% endif %} <!-- user not logged in -->
-            <li><a href = "{{ url_for('flash_cards.createFC') }}">Create</a></li>
+            
             <li><a href = "{{ url_for('base.aboutUs') }}">About Us</a></li>
         </ul>
     </header>
