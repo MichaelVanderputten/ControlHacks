@@ -7,7 +7,7 @@ from sqlalchemy import desc
 from app.user.models import User
 from app import db # Leaderboard stuff
 
-from datetime import date # point check
+from datetime import date, timedelta# point check
 
 from . import base_blueprint # blueprint
 
@@ -28,7 +28,7 @@ def leaderboard():
         user_points_rank = User.query.filter(User.points > current_user.points).count() + 1
         user_multiplier_rank = User.query.filter(User.point_multiplier > current_user.point_multiplier).count() + 1
     else:
-        current_user_points = None # justin case
+        current_user_points = None # just in case
         current_user_multiplier = None
         user_points_rank = None
         user_multiplier_rank = None
@@ -46,10 +46,31 @@ def leaderboard():
 def check_daily():
     if current_user.is_authenticated:
         today = date.today()
-        if current_user.last_visited is None or current_user.last_visited < today:
+        yesterday = today - timedelta(days=1)
+
+        if current_user.last_visited is None: # first time visiting
             current_user.last_visited = today
-            current_user.points += (1 * current_user.point_multiplier)
+            current_user.streak = 1
             db.session.commit()
+        
+        elif current_user.last_visited < today:
+            days_since_last_visit = (today - current_user.last_visited).days
+
+            if current_user.last_visited == yesterday:
+                current_user.streak += 1 # add to streak
+                current_user.point_multiplier += 1
+            else:
+                current_user.streak = 1 # reset streak
+                #current_user.point_multiplier = 1 # If we want multiplier to be reset too
+                if days_since_last_visit > 7:
+                    current_user.point_multiplier = 1
+                else:
+                    current_user.point_multiplier = max(1, current_user.point_multiplier - 1)
+                    # reduce multiplier by 1 with max of 1
+
+            current_user.points += (1 * current_user.point_multiplier)
+            current_user.last_visited = today
+            db.session.commit() # add points, update database
 
 def get_top_users(): # for leaderboard
     all_users = db.session.query(User).all()
