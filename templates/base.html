@@ -21,7 +21,7 @@
             {% if current_user.is_authenticated %}
                 <li><a href="{{ url_for('user.logout') }}">Log Out</a></li>
                 <li><a href = "{{ url_for('flash_cards.create_deck') }}">Create</a></li>
-                <li><a href="#">Profile</a></li>
+                <li><a href="{{ url_for('base.leaderboard') }}">Leaderboard</a></li>
             {% else %} <!-- user logged in -->
                 <li><a href="{{ url_for('user.login') }}">Log In</a></li>
                 <li><a href="{{ url_for('user.register') }}">Register</a></li>

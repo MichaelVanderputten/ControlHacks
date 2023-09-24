@@ -6,6 +6,8 @@ from .forms import CreateDeckForm, CreateFlashCards
 from .models import Deck, FlashCard
 from app import db
 
+from app.base.views import get_top_users, update_forced, check_daily
+
 
 from . import flash_cards_blueprint # blueprint
 
@@ -13,8 +15,20 @@ from . import flash_cards_blueprint # blueprint
 @flash_cards_blueprint.route('/home')
 @login_required
 def home():
+   check_daily()
+
+   user_details = { # spacific details
+        'streek': current_user.streek,
+        'points': current_user.points,
+        'multiplier': current_user.point_multiplier
+    }
+
    allDecks = Deck.query.all()
-   return render_template('flashCards/home.html', allDecks = allDecks)
+   return render_template(
+      'flashCards/home.html', 
+      allDecks = allDecks, 
+      user_details=user_details
+      )
 
 
 @flash_cards_blueprint.route('/view_Deck/<int:deck_id>')
