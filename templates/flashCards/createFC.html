@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %} Create FC {% endblock title %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock head %}
+
+
+{% block body %}
+    <h1 style= "margin-top: 200px; text-shadow: 50px, 50px, 65px, #000000;">Create Flash Cards</h1>
+
+    <form method="post">
+        {{ form.hidden_tag() }}
+        <p>{{ form.question.label }}<br>{{ form.question(size=500) }}</p>
+        <p>{{ form.answer.label }}<br>{{ form.answer(size=500) }}</p>
+        
+        <div id="dynamic_card_fields">
+            <!-- Javascript will populate this -->
+        </div>
+    
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock body %}
+
+{% block scripts %}
+<script>
+    // This may not work i havnt tested it yet. We need basically all the functions beafore we can test
+    document.addEventListener("DOMContentLoaded", function() {
+        const numCardsField = document.querySelector("input[name='num_cards']");
+        const dynamicCardFields = document.getElementById("dynamic_card_fields");
+    
+        function createCardFields(num) {
+            dynamicCardFields.innerHTML = "";
+            for (let i = 1; i <= num; i++) {
+                dynamicCardFields.innerHTML += `
+                    <p>Question ${i}<br><input type="text" name="question${i}" size="50"></p>
+                    <p>Answer ${i}<br><input type="text" name="answer${i}" size="50"></p>
+                `;
+            }
+        }
+    
+        numCardsField.addEventListener("input", function() {
+            const num = parseInt(this.value);
+            createCardFields(num);
+        });
+    });
+    </script>
+{% endblock scripts %}

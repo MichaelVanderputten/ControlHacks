@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %} Leaderboard {% endblock title %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/leaderboard.css') }}">
+{% endblock head %}
+
+
+{% block body %}
+    <h1 style= "margin-top: 200px; text-shadow: 50px, 50px, 65px, #000000;">Leaderboard</h1>
+
+    <h2>Top 10 by Points</h2>
+    <div class="leaderboard-container">
+        <table class="leaderboard-table">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Username</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in top_points_users %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ user.display_name }}</td>
+                    <td>{{ user.points }}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td>(you): {{ user_points_rank }}</td>
+                    <td>{{ current_user.display_name if current_user.is_authenticated else 'Not logged in' }}</td>
+                    <td>{{ current_user_points }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Top 10 by Multiplier</h2>
+        <table class="leaderboard-table">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Username</th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in top_multiplier_users %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ user.display_name }}</td>
+                    <td>{{ user.point_multiplier }}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td>(you): {{ user_multiplier_rank }}</td>
+                    <td>{{ current_user.display_name if current_user.is_authenticated else 'Not logged in' }}</td>
+                    <td>{{ current_user_multiplier }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock body %}

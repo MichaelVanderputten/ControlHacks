@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet"> 
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/base.css') }}">
+  {% block head %}
+
+  {% endblock head %}
+  <title>{% block title %}{% endblock title %}</title>
+</head>
+
+<body>
+    <header>
+        <ul>
+            <li style="float:left"><a href = "{{ url_for('flash_cards.home') }}">Home</a</li>
+            {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('user.logout') }}">Log Out</a></li>
+                <li><a href = "{{ url_for('flash_cards.create_deck') }}">Create</a></li>
+                <li><a href="{{ url_for('base.leaderboard') }}">Leaderboard</a></li>
+            {% else %} <!-- user logged in -->
+                <li><a href="{{ url_for('user.login') }}">Log In</a></li>
+                <li><a href="{{ url_for('user.register') }}">Register</a></li>
+            {% endif %} <!-- user not logged in -->
+            
+            <li><a href = "{{ url_for('base.aboutUs') }}">About Us</a></li>
+        </ul>
+    </header>
+        <div class="body-block">
+            {% block body %}
+
+            {% endblock %}
+        </div>
+
+
+        <div class="body-scripts">
+            {% block scripts %}
+
+            {% endblock %}
+        </div>
+    
+</body>
+
+</html>
