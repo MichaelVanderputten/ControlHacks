@@ -46,7 +46,7 @@ def create_deck():
        deck = Deck(
            name=form.name.data,
            private=form.private.data,
-           creator_id=1  # Replace this later with logged-in user ID
+           creator_id=current_user.id
        )
        db.session.add(deck)
        db.session.flush()
@@ -66,13 +66,14 @@ def create_Flash_Cards(deck_id):
        flashCard = FlashCard(
            question = form.question.data,
            answer = form.answer.data,
-           deck_id= deck_id
+           deck_id= deck_id,
+           creator_id=current_user.id
    )
        db.session.add(flashCard)
        db.session.commit()
        flash('Flash card successfully added to the deck')
 
-       return redirect(url_for('flash_cards.view_deck', deck_id = deck_id))
+       return redirect(url_for('flash_cards.view_Deck', deck_id = deck_id))
   
    return render_template('flashCards/createFC.html', form = form)# this def creates new flashcards in the set selected
 

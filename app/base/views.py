@@ -50,17 +50,17 @@ def check_daily():
 
         if current_user.last_visited is None: # first time visiting
             current_user.last_visited = today
-            current_user.streak = 1
+            current_user.streek = 1
             db.session.commit()
         
         elif current_user.last_visited < today:
             days_since_last_visit = (today - current_user.last_visited).days
 
             if current_user.last_visited == yesterday:
-                current_user.streak += 1 # add to streak
+                current_user.streek += 1 # add to streek
                 current_user.point_multiplier += 1
             else:
-                current_user.streak = 1 # reset streak
+                current_user.streek = 1 # reset streek
                 #current_user.point_multiplier = 1 # If we want multiplier to be reset too
                 if days_since_last_visit > 7:
                     current_user.point_multiplier = 1
