@@ -1,54 +1,56 @@
 .nav {
     list-style-type: none;
-    border:1px solid #F59500;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: #1B1B1B;
     border-radius: 5px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
   
   .navli {
-    float: right;
-    border:1px solid #F59500;
+    float: left;
     font-family: 'Arial', sans-serif;
     font-weight: 600;
   }
   
   .navli :first-child{
-    border-right:1px solid #F59500;
     padding-left: 40px;
   }
   .navli :last-child{
-      
-      padding-right:40px;
+    padding-right:40px;
   }
   
   .navli a {
     display: block;
     color: white;
-    font-size: 20px ;
+    font-size: 1.25rem;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    width: 100%;
   }
   
   .navli a:hover:not(.active) {
     background-color: #111;
+    border-bottom: 1px solid #F59500;
   }
+  
   
   .active {
     background-color: #04AA6D;
   }
 
   body{
-    background-color: #1B1B1B;
+    background-color: #000000;
 }
 
 h1{
   margin-top: 50px;
   text-align: center;
-  font-size: 120px;
+  font-size: 5rem;
   color: white;
   text-shadow: 50px, 50px, 65px, #000000;
   font-family: 'Arial', sans-serif;
