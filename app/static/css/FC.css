@@ -1,57 +1,113 @@
+/* Existing General Styling */
 .hidden {
-    display: none;
-  }
-
-.flash-card{
-  border-color: #ff8800;
-    border-width: 5px;
-    border-radius: 25px;
-    border-style: outset;
-    text-align: center;
-    list-style-type: none;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    padding: 10px;
-    background-color: #ffa6005e;
+  display: none;
 }
 
-.flash-card:hover:not(.active){
-  border-style: outset;
-  background-color:#ff88005e;
-}
-.flash-card:hover:not(.active){
-  border-style: inset;
-  background-color: #ff7b005e;
-}
-
-.front{
-  font-size: 20px;
+body {
+  background-color: black;
   color: white;
-  font-family:'Varela Round', sans-serif;;
+  font-family: Arial, sans-serif;
+  text-align: center; /* Centering text globally */
 }
 
-.back{
-  font-size: 20px;
-  color: white;
-  font-family:'Varela Round', sans-serif;;
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centering flex children */
 }
 
-.addCard{
+/* Spacing */
+.spacing {
+  margin: 20px 0;
+}
+
+/* Existing Flashcard Styling */
+.flash-card {
   border-color: #ff8800;
   border-width: 5px;
   border-radius: 25px;
   border-style: outset;
   text-align: center;
-  list-style-type: none;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  padding: 10px;
+  margin: 20px 0;  /* Added vertical margins */
+  padding: 20px;  /* Added padding */
   background-color: #ffa6005e;
+  transition: background-color 0.3s;
+  margin-bottom: 40px;
 }
 
-.addCard a{
-  font: 50px;
+.flash-card:hover {
+  border-style: inset;
+  background-color: #ff7b005e;
+}
+
+.front, .back {
+  font-size: 20px;
+  color: white;
+  font-family: 'Varela Round', sans-serif;
+  margin: 10px 0;  /* Added vertical margins */
+}
+
+/* Headings */
+h1, h2 {
+  text-align: center;
+  margin: 40px 0;  /* Increased bottom margin */
+}
+
+/* Buttons and Links */
+.addCard {
+  border-color: #ff8800;
+  border-width: 5px;
+  border-radius: 25px;
+  border-style: outset;
+  text-align: center;
+  margin: 20px 0;  /* Added vertical margins */
+  padding: 20px;  /* Added padding */
+  margin-top: 40px;  /* Added top margin */
+  margin-bottom: 20px;
+  background-color: #ffa6005e;
+  color: white;  /* Make the text white */
+  display: inline-block;
+}
+
+.addCard a {
+  font-size: 50px;
   color: white;
   text-decoration: none;
-  font-family:'Varela Round', sans-serif;;
+  font-family: 'Varela Round', sans-serif;
+}
+
+button, input[type="submit"] {
+  padding: 15px 25px;
+  margin: 20px 0;  /* Added vertical margins */
+  background-color: orange;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Textarea and File Input */
+.summarize-form, .pdf-upload-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* Centering flex items */
+  margin: 20px 0;  /* Added vertical margins */
+}
+
+.summarize-form textarea, .pdf-file-input {
+  width: 80%;
+  margin: 10px 0;  /* Added vertical margins */
+}
+
+.delete-button {
+  background-color: red;
+  color: white;
+  padding: 15px 25px;
+  cursor: pointer;
+  margin-top: 40px;  /* Added top margin */
+  display: inline-block;
+}
+
+.button-wrapper {
+  text-align: center; /* Center the buttons */
+  margin-top: 40px; /* Add some top margin */
 }
