@@ -38,6 +38,9 @@ def view_Deck(deck_id):
 
 
 
+
+
+
 @flash_cards_blueprint.route('/create_deck', methods=['GET', 'POST'])
 @login_required
 def create_deck():
@@ -78,6 +81,19 @@ def create_Flash_Cards(deck_id):
    return render_template('flashCards/createFC.html', form = form)# this def creates new flashcards in the set selected
 
 def print_decks():
-    all_decks = Deck.query.all()
-    for deck in all_decks:
-        print(f"Deck ID: {deck.id}, Deck Name: {deck.name}, Creator ID: {deck.creator_id}")# debug
+     all_decks = Deck.query.all()
+     for deck in all_decks:
+       print(f"Deck ID: {deck.id}, Deck Name: {deck.name}, Creator ID: {deck.creator_id}")# debug
+
+@flash_cards_blueprint.route('/delete_FlashCard/<int:flashcard_id>/<int:deck_id>', methods=['POST'])
+@login_required
+def delete_FlashCard(flashcard_id, deck_id):
+    flashCard = FlashCard.query.get_or_404(flashcard_id)
+    if flashCard.deck_id != deck_id:
+        flash('You cannot delete this flashcard', 'danger')
+        return redirect(url_for('flash_cards.view_Deck', deck_id=deck_id))
+
+    db.session.delete(flashCard)
+    db.session.commit()
+    flash('FlashCard deleted', 'success')
+    return redirect(url_for('flash_cards.view_Deck', deck_id=deck_id))

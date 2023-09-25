@@ -10,12 +10,13 @@
 {% block body %}
     <h1 style= "margin-top: 200px; text-shadow: 50px, 50px, 65px, #000000;">View Deck {{ deck }}</h1>
 
-   {% for flashCard in flashcards %}
-
-        <strong>{{ flashCard.question }}</strong>
-        <p>{{ flashCard.answer }}</p>
-
-   {% endfor %}
+    {% for flashCard in flashcards %}
+    <strong>{{ flashCard.question }}</strong>
+    <form action="{{ url_for('flash_cards.delete_FlashCard', flashcard_id=flashCard.id, deck_id=deck.id) }}" method="post" style="display:inline;">
+        <button type="submit">Delete</button>
+    </form>
+    <p>{{ flashCard.answer }}</p>
+{% endfor %}
 
    <a href ="{{ url_for('flash_cards.create_Flash_Cards', deck_id=deck.id) }}">create flashcard</a>
     
