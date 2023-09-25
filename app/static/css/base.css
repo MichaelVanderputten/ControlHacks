@@ -3,8 +3,8 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #1cb800;
-    border-radius: 25px;
+    background-color: #F59500;
+    border-radius: 5px;
   }
   
   .navli {
@@ -41,7 +41,7 @@
   }
 
   body{
-    background-color: #acfe97;
+    background-color: #1B1B1B;
 }
 
 h1{
