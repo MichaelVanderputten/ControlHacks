@@ -28,7 +28,7 @@ API_URL_LIST = [
     "https://api-inference.huggingface.co/models/Michael-Vptn/text-summarization-t5-base",
 ]
 
-headers = {"Authorization": "Bearer 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"} # hash out on github
+headers = {"Authorization": "Bearer xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"} # hash out on github
 
 global_input_text = ""
 global_output_text = "" # api stuff
