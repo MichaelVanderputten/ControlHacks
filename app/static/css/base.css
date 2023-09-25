@@ -1,42 +1,105 @@
-.nav {
+.header {
+    width: 100%;
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: #1B1B1B;
     border-radius: 5px;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+
+    font-family: 'Arial', sans-serif;
+  }
+
+  .header-top {
   }
   
-  .navli {
+  .header-top li {
+    font-weight: 300;
+  }
+  .header-top li :first-child{
+    padding-left: 2.5rem;
     float: left;
-    font-family: 'Arial', sans-serif;
+  }
+  .header-top li :last-child{
+    padding-right: 2.5rem;
+  }
+  
+  .header-top li a {
+    text-decoration: none;
+    color: gray;
+    font-size: 1rem;
+    text-align: center;
+    float: right;
+    padding: 1.14rem 1rem;
+  }
+
+  .header-top li a:hover:not(.active) {
+    background-color: #111;
+  }
+
+
+
+  .header-bottom {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .header-bottom li {
     font-weight: 600;
   }
   
-  .navli :first-child{
-    padding-left: 40px;
+  .header-bottom li :first-child{
+    padding-left: 2.5rem;
   }
-  .navli :last-child{
-    padding-right:40px;
+  .header-bottom li :last-child{
+    padding-right: 2.5rem;
   }
   
-  .navli a {
+  .header-bottom li a {
     display: block;
+    text-decoration: none;
     color: white;
     font-size: 1.25rem;
     text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    width: 100%;
+    display: block;
+    flex: 0 1 auto;
+    float: left;
+    padding: 1.14rem 1rem;
   }
-  
-  .navli a:hover:not(.active) {
+
+  .header-bottom li a:hover:not(.active) {
     background-color: #111;
     border-bottom: 1px solid #F59500;
   }
+
+  .header-link {
+    font-weight: 600;
+  }
+  
+  .header-link :first-child{
+    padding-left: 2.5rem;
+  }
+  .header-link :last-child{
+    padding-right: 2.5rem;
+  }
+  
+  .header-link a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    font-size: 1.25rem;
+    text-align: center;
+    display: block;
+    flex: 0 1 auto;
+    float: left;
+    padding: 1.14rem 1rem;
+  }
+
+  .header-link a:hover:not(.active) {
+    background-color: #111;
+    border-bottom: 1px solid #F59500;
+  }
+  
   
   
   .active {
