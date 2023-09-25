@@ -1,20 +1,26 @@
 #user-icon-container {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    font-size: 24px;
-    cursor: pointer;
-  }
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+
+#user-icon-container:hover {
+  background-color: #ff8c00;
+}
   
-  #user-details-dropdown {
-    position: fixed;
-    bottom: 50px;
-    right: 10px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-  }
+#user-details-dropdown {
+  position: fixed;
+  bottom: 50px;
+  right: 10px;
+  padding: 10px;
+}
   
   .hidden {
     display: none;
@@ -26,7 +32,7 @@
   }
   
   .dks{
-    border-color: #006e0f;
+    border-color: #ff8800;
     border-width: 5px;
     border-radius: 25px;
     border-style: outset;
@@ -35,17 +41,17 @@
     margin-top: 5px;
     margin-bottom: 5px;
     padding: 10px;
-    background-color: #62ff8e5e;
+    background-color: #ffa6005e;
 
   }
 
   .dks:hover:not(.active){
     border-style: outset;
-    background-color:#62ff8e5e;
+    background-color:#ff88005e;
   }
   .dks:hover:not(.active){
     border-style: inset;
-    background-color: #0090295e;
+    background-color: #ff7b005e;
   }
 
   li a{
@@ -54,3 +60,29 @@
     font-family: 'Varela Round', sans-serif;
     color: white;
   }
+
+  .streekli {
+    display: block;
+    color: white;
+    font-size: 1.25rem;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    width: 100%;
+    border-radius: 8px;
+    background-color: #333333;
+    transition: background-color 0.3s; 
+}
+
+.streekli:hover {
+    background-color: #ff8c00; 
+    color: #ffffff; 
+}
+
+.streekli a {
+  color: #ff8c00;
+}
+
+.streekli a:hover {
+  text-decoration: underline;
+}

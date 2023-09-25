@@ -24,6 +24,7 @@
                 <li class = "header-login"><a href="{{ url_for('user.login') }}">Log In</a></li>
                 <li class = "header-login"><a href="{{ url_for('user.register') }}">Register</a></li>
             {% endif %} <!-- user not logged in -->
+            <img src="{{ url_for('static', filename='img/logo.png') }}" id="navbar-logo" alt="Quickie Hub">
         </ul>
         <ul class = "header header-bottom">
             {% if current_user.is_authenticated %}

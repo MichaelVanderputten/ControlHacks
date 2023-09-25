@@ -10,8 +10,13 @@
     font-family: 'Arial', sans-serif;
   }
 
-  .header-top {
-  }
+  #navbar-logo {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 60px;  
+    padding: 10px;
+}
   
   .header-top li {
     font-weight: 300;
