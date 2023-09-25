@@ -9,11 +9,24 @@
 {% block body %}
     <h1 style= "margin-top: 100px; text-shadow: 50px, 50px, 65px, #000000;">Browse Flash Cards</h1>
 
-    {% for deck in all_decks %}
+    <h3>Your Decks</h3>
+
+    {% for deck in user_all_decks %}
     <li class = "dks"><a href="{{ url_for('flash_cards.view_Deck', deck_id=deck.id) }}">{{ deck.name }}</a></li>
     {% endfor %}
 
-    <!-- Clickable icon -->
+    <h3>Browse Decks</h3>
+
+    {% for deck in all_decks %}
+    <li class="dks">
+        <a href="{{ url_for('flash_cards.pub_view_Deck', deck_id=deck.id) }}">
+            {{ deck.name }}
+            <p>Created By: {{ deck.creator.display_name }}</p>
+        </a>
+    </li>
+{% endfor %}
+
+    <!-- Clickable streek icon -->
     <div id="user-icon-container">
         <img class="streek-img" id="user-icon" src="{{ url_for('static', filename='img/flame.jpg') }}" alt="Streek Icon">
         <!-- Icon needs background removed and conversion to png idk how too -->

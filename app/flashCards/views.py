@@ -15,6 +15,8 @@ from .forms import CreateDeckForm, CreateFlashCards
 from .models import Deck, FlashCard
 from app import db
 
+from app.user.models import User
+
 from app.base.views import get_top_users, update_forced, check_daily
 
 
@@ -37,18 +39,24 @@ global_output_text = "" # api stuff
 @flash_cards_blueprint.route('/home')
 @login_required
 def home():
-   check_daily()
-   print_decks()
+    check_daily()
+    print_decks()
 
-   user_details = { # spacific details
+    user_details = {
         'streek': current_user.streek,
         'points': current_user.points,
         'multiplier': current_user.point_multiplier
     }
 
-   all_decks = Deck.query.all()
-   return render_template('flashCards/home.html', all_decks = all_decks, user_details=user_details
-      )
+    user_all_decks = Deck.query.options(db.joinedload(Deck.creator)).filter_by(creator_id=current_user.id).all()
+    all_decks = Deck.query.options(db.joinedload(Deck.creator)).filter_by(private=False).all()
+
+    return render_template(
+        'flashCards/home.html',
+        all_decks=all_decks,
+        user_details=user_details,
+        user_all_decks=user_all_decks
+    )
 
 
 @flash_cards_blueprint.route('/view_Deck/<int:deck_id>', methods=['GET', 'POST'])
@@ -77,6 +85,12 @@ def view_Deck(deck_id):
         output_text = "An error has occoured. please try again"
         print(f"Main error: {e}")  # Print specific main error to console
    return render_template('flashCards/view_deck.html', deck=deck, flashcards=flashcards, output_text=output_text, input_text=input_text)# use this to diplay the correct set of flash cards
+
+@flash_cards_blueprint.route('/pub_view_Deck/<int:deck_id>')
+def pub_view_Deck(deck_id):
+   deck = Deck.query.get_or_404(deck_id)
+   flashcards = deck.flash_cards
+   return render_template('flashCards/pub_view_deck.html', deck=deck, flashcards=flashcards)
 
 @flash_cards_blueprint.route('/create_deck', methods=['GET', 'POST'])
 @login_required
@@ -167,6 +181,28 @@ def delete_FlashCard(flashcard_id, deck_id):
     db.session.commit()
     flash('FlashCard deleted', 'success')
     return redirect(url_for('flash_cards.view_Deck', deck_id=deck_id))
+
+@flash_cards_blueprint.route('/delete_deck/<int:deck_id>', methods=['POST'])
+@login_required
+def delete_deck(deck_id):
+    deck_to_delete = Deck.query.get_or_404(deck_id)
+    if deck_to_delete.creator_id != current_user.id:
+        flash('You do not have permission to delete this deck.', 'danger')
+        return redirect(url_for('flash_cards.home'))
+
+    try:
+        for flashcard in deck_to_delete.flash_cards:
+            db.session.delete(flashcard)
+        # Delete the deck
+        db.session.delete(deck_to_delete)
+        db.session.commit()
+        
+        flash('Deck successfully deleted.', 'success')
+    except Exception as e:
+        db.session.rollback()
+        flash(f'An error occurred while trying to delete the deck: {e}', 'danger')
+
+    return redirect(url_for('flash_cards.home'))
 
 def generate(input_text):
   try:

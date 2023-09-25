@@ -26,6 +26,10 @@
 
    <a class ="addCard" href ="{{ url_for('flash_cards.create_Flash_Cards', deck_id=deck.id) }}">create flashcard</a>
 
+   <form action="{{ url_for('flash_cards.delete_deck', deck_id=deck.id) }}" method="post">
+        <input type="submit" value="Delete Deck" class="delete-button" onclick="return confirm('Are you sure you want to delete this deck?');">
+   </form>
+
    <h2>Input Text:</h2>
         <p>{{ input_text[:250] }}...</p>
     <h2>Output Text:</h2>

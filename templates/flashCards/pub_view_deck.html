@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %} Create FC {% endblock title %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/FC.css') }}">
+{% endblock head %}
+
+
+{% block body %}
+    <h1 style= "margin-top: 200px; text-shadow: 50px, 50px, 65px, #000000;">View Deck {{ deck }}</h1>
+
+    {% for flashCard in flashcards %}
+    <div class="flash-card" onclick="toggleCard(this)">
+        <div class="front">
+            <p>{{ flashCard.question }}</p>
+        </div>
+        <div class="back" style="display: none;">
+            <p>{{ flashCard.answer }}</p>
+        </div>
+    </div>
+{% endfor %}
+    
+{% endblock body %}
+
+{% block scripts %}
+<script>
+    function toggleCard(flashCard) {
+    const front = flashCard.querySelector('.front');
+    const back = flashCard.querySelector('.back');
+    
+    if (front.style.display === 'none') {
+        front.style.display = 'block';
+        back.style.display = 'none';
+    } else {
+        front.style.display = 'none';
+        back.style.display = 'block';
+    }
+}
+</script>
+{% endblock scripts %}
