@@ -25,6 +25,28 @@
 {% endfor %}
 
    <a href ="{{ url_for('flash_cards.create_Flash_Cards', deck_id=deck.id) }}">create flashcard</a>
+
+   <h2>Input Text:</h2>
+        <p>{{ input_text[:250] }}...</p>
+    <h2>Output Text:</h2>
+    {% if output_text %}
+        <div><p>{{ output_text }}</p></div>
+    {% else %}
+        <div><p>...</p></div>
+    {% endif %}
+
+    <form method="post" class="summarize-form" action="{{ url_for('flash_cards.view_Deck', deck_id=deck.id) }}">
+        <textarea placeholder="Input Text Here" name="input_text" rows="4" cols="30" class="summarize-form">{{ input_text }}</textarea>
+        <button type="submit" class="summarize-button">Summarize</button>
+    </form>
+
+    <form action="{{ url_for('flash_cards.upload_file', deck_id=deck.id) }}" method="post" enctype="multipart/form-data" class="pdf-upload-form">
+        <label for="pdf_file" class="upload-label">Upload a PDF:</label>
+        <input type="file" name="pdf_file" id="pdf_file" class="pdf-file-input">
+        <input type="submit" value="Upload" class="upload-button">
+    </form>
+
+    <a href="{{ url_for('flash_cards.export_to_pdf') }}" class="export_pdf-button">Export To PDF</a>
     
 {% endblock body %}
 
