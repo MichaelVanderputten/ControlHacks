@@ -24,8 +24,8 @@ def home():
         'multiplier': current_user.point_multiplier
     }
 
-   allDecks = Deck.query.all()
-   return render_template('flashCards/home.html', allDecks = allDecks, user_details=user_details
+   all_decks = Deck.query.all()
+   return render_template('flashCards/home.html', all_decks = all_decks, user_details=user_details
       )
 
 
