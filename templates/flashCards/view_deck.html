@@ -16,6 +16,8 @@
         <p>{{ flashcard.answer }}</p>
 
    {% endfor %}
+
+   <a href ="{{ url_for('flash_cards.create_Flash_Cards', deck_id=deck.id) }}">create flashcard</a>
     
 {% endblock body %}
 

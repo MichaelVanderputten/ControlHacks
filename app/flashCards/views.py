@@ -60,13 +60,13 @@ def create_deck():
 @flash_cards_blueprint.route('/create_Flash_Cards/<int:deck_id>', methods=['GET', 'POST'])
 @login_required
 def create_Flash_Cards(deck_id):
-   deck = Deck.query.get_or_404(deck.id)
+
    form = CreateFlashCards()
    if form.validate_on_submit():
        flashCard = FlashCard(
            question = form.question.data,
            answer = form.answer.data,
-           deck_id= deck.id
+           deck_id= deck_id
    )
        db.session.add(flashCard)
        db.session.commit()
@@ -79,4 +79,4 @@ def create_Flash_Cards(deck_id):
 def print_decks():
     all_decks = Deck.query.all()
     for deck in all_decks:
-        print(f"Deck ID: {deck.id}, Deck Name: {deck.name}, Creator ID: {deck.creator_id}")
+        print(f"Deck ID: {deck.id}, Deck Name: {deck.name}, Creator ID: {deck.creator_id}")# debug
