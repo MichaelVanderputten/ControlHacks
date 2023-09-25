@@ -8,7 +8,7 @@
 
 
 {% block body %}
-    <h1 style= "margin-top: 200px; text-shadow: 50px, 50px, 65px, #000000;">Create Flash Cards</h1>
+    <h1 style= "margin-top: 200px; text-shadow: 50px, 50px, 65px, #000000;">View Deck {{ deck }}</h1>
 
    {% for flashCard in flashcards %}
 
@@ -20,26 +20,5 @@
 {% endblock body %}
 
 {% block scripts %}
-<script>
-    // This may not work; I haven't tested it yet. We need basically all the functions before we can test
-    document.addEventListener("DOMContentLoaded", function() {
-        const numCardsField = document.querySelector("input[name='num_cards']");
-        const dynamicCardFields = document.getElementById("dynamic_card_fields");
-    
-        function createCardFields(num) {
-            dynamicCardFields.innerHTML = "";
-            for (let i = 1; i <= num; i++) {
-                dynamicCardFields.innerHTML += `
-                    <p>Question ${i}<br><input type="text" name="question${i}" size="50"></p>
-                    <p>Answer ${i}<br><input type="text" name="answer${i}" size="50"></p>
-                `;
-            }
-        }
-    
-        numCardsField.addEventListener("input", function() {
-            const num = parseInt(this.value);
-            createCardFields(num);
-        });
-    });
-</script>
+
 {% endblock scripts %}

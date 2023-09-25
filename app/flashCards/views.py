@@ -33,8 +33,8 @@ def home():
 @login_required
 def view_Deck(deck_id):
    deck = Deck.query.get_or_404(deck_id)
-   flashcards = deck.flashCard
-   return render_template('view_deck.html', deck=deck, flashcards=flashcards)# use this to diplay the correct set of flash cards
+   flashcards = deck.flash_cards
+   return render_template('flashCards/view_deck.html', deck=deck, flashcards=flashcards)# use this to diplay the correct set of flash cards
 
 
 
