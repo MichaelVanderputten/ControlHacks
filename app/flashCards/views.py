@@ -16,6 +16,7 @@ from . import flash_cards_blueprint # blueprint
 @login_required
 def home():
    check_daily()
+   print_decks()
 
    user_details = { # spacific details
         'streek': current_user.streek,
@@ -49,7 +50,7 @@ def create_deck():
        )
        db.session.add(deck)
        db.session.flush()
-
+       db.session.commit()
 
        return redirect(url_for('flash_cards.home'))
   
@@ -71,7 +72,11 @@ def create_Flash_Cards(deck_id):
        db.session.commit()
        flash('Flash card successfully added to the deck')
 
-
-       return redirect(url_for('flashCards.view_deck', deck_id = deck_id))
+       return redirect(url_for('flash_cards.view_deck', deck_id = deck_id))
   
    return render_template('flashCards/createFC.html', form = form)# this def creates new flashcards in the set selected
+
+def print_decks():
+    all_decks = Deck.query.all()
+    for deck in all_decks:
+        print(f"Deck ID: {deck.id}, Deck Name: {deck.name}, Creator ID: {deck.creator_id}")
