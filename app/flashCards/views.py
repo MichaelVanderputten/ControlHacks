@@ -24,10 +24,7 @@ def home():
     }
 
    allDecks = Deck.query.all()
-   return render_template(
-      'flashCards/home.html', 
-      allDecks = allDecks, 
-      user_details=user_details
+   return render_template('flashCards/home.html', allDecks = allDecks, user_details=user_details
       )
 
 
@@ -54,7 +51,7 @@ def create_deck():
        db.session.flush()
 
 
-       return redirect(url_for('flashCards.home'))
+       return redirect(url_for('flash_cards.home'))
   
    return render_template('flashCards/create_deck.html', form=form)# creates a new deck
 
