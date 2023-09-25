@@ -6,7 +6,44 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}">
 {% endblock head %}
 
-
 {% block body %}
-    <h1 style= "margin-top: 200px; text-shadow: 50px, 50px, 65px, #000000;">Browse Flash Cards</h1>
+    <h1 style= "margin-top: 100px; text-shadow: 50px, 50px, 65px, #000000;">Browse Flash Cards</h1>
+
+    {% for deck in all_decks %}
+    <li class = "dks"><a href="{{ url_for('flash_cards.view_Deck', deck_id=deck.id) }}">{{ deck.name }}</a></li>
+    {% endfor %}
+
+    <!-- Clickable icon -->
+    <div id="user-icon-container">
+        <img class="streek-img" id="user-icon" src="{{ url_for('static', filename='img/flame.jpg') }}" alt="Streek Icon">
+        <!-- Icon needs background removed and conversion to png idk how too -->
+    </div>
+    
+    <!-- Hidden dropdown content -->
+    <div id="user-details-dropdown" class="hidden">
+        <ul>
+        <li>Streek: <span id="streek">{{ user_details.streek }}</span></li>
+        <li>Points: <span id="points">{{ user_details.points }}</span></li>
+        <li>Multiplier: <span id="multiplier">{{ user_details.multiplier }}</span></li>
+        </ul>
+    </div>
 {% endblock body %}
+
+{% block scripts %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        // Get the elements
+        const userIcon = document.getElementById("user-icon");
+        const userDetailsDropdown = document.getElementById("user-details-dropdown");
+
+        // Add click event listener
+        userIcon.addEventListener("click", function() {
+            if (userDetailsDropdown.classList.contains("hidden")) {
+            userDetailsDropdown.classList.remove("hidden");
+            } else {
+            userDetailsDropdown.classList.add("hidden");
+            }
+        });
+        });
+    </script>
+{% endblock scripts %}

@@ -1,4 +1,4 @@
-ul {
+.nav {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -7,23 +7,23 @@ ul {
     border-radius: 25px;
   }
   
-  li {
+  .navli {
     float: right;
     border-left:1px solid #ffffff;
     font-family: 'Varela Round', sans-serif;
   
   }
   
-  li :first-child{
+  .navli :first-child{
     border-right:1px solid #ffffff;
     padding-left: 40px;
   }
-  li :last-child{
+  .navli :last-child{
       
       padding-right:40px;
   }
   
-  li a {
+  .navli a {
     display: block;
     color: white;
     font-size: 20px ;
@@ -32,7 +32,7 @@ ul {
     text-decoration: none;
   }
   
-  li a:hover:not(.active) {
+  .navli a:hover:not(.active) {
     background-color: #111;
   }
   
@@ -49,5 +49,6 @@ h1{
     font-size: 120px;
     color: white;
     text-shadow: 50px, 50px, 65px, #000000;
+    font-family: 'Varela Round', sans-serif;
     
 }

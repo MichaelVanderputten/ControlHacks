@@ -1,0 +1,57 @@
+.hidden {
+    display: none;
+  }
+
+.flash-card{
+  border-color: rgb(0, 110, 15);
+    border-width: 5px;
+    border-radius: 25px;
+    border-style: outset;
+    text-align: center;
+    list-style-type: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+    background-color: #62ff8e5e;
+}
+
+.flash-card:hover:not(.active){
+  border-style: outset;
+  background-color:#62ff8e5e;
+}
+.flash-card:hover:not(.active){
+  border-style: inset;
+  background-color: #0090295e;
+}
+
+.front{
+  font-size: 20px;
+  color: white;
+  font-family:'Varela Round', sans-serif;;
+}
+
+.back{
+  font-size: 20px;
+  color: white;
+  font-family:'Varela Round', sans-serif;;
+}
+
+.addCard{
+  border-color: rgb(0, 110, 15);
+  border-width: 5px;
+  border-radius: 25px;
+  border-style: outset;
+  text-align: center;
+  list-style-type: none;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 10px;
+  background-color: #62ff8e5e;
+}
+
+.addCard a{
+  font: 50px;
+  color: white;
+  text-decoration: none;
+  font-family:'Varela Round', sans-serif;;
+}
