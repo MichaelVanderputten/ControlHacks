@@ -24,7 +24,7 @@
     </div>
 {% endfor %}
 
-   <a href ="{{ url_for('flash_cards.create_Flash_Cards', deck_id=deck.id) }}">create flashcard</a>
+   <p class ="addCard"><a href ="{{ url_for('flash_cards.create_Flash_Cards', deck_id=deck.id) }}">create flashcard</a></p>
     
 {% endblock body %}
 

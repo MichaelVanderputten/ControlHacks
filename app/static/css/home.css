@@ -25,3 +25,32 @@
     height: 50px;
   }
   
+  .dks{
+    border-color: rgb(0, 110, 15);
+    border-width: 5px;
+    border-radius: 25px;
+    border-style: outset;
+    text-align: center;
+    list-style-type: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+    background-color: #62ff8e5e;
+
+  }
+
+  .dks:hover:not(.active){
+    border-style: outset;
+    background-color:#62ff8e5e;
+  }
+  .dks:hover:not(.active){
+    border-style: inset;
+    background-color: #0090295e;
+  }
+
+  li a{
+    text-decoration: none;
+    font-size: 50px;
+    font-family: 'Varela Round', sans-serif;
+    color: white;
+  }

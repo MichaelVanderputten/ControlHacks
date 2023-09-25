@@ -7,10 +7,10 @@
 {% endblock head %}
 
 {% block body %}
-    <h1 style= "margin-top: 200px; text-shadow: 50px, 50px, 65px, #000000;">Browse Flash Cards</h1>
+    <h1 style= "margin-top: 100px; text-shadow: 50px, 50px, 65px, #000000;">Browse Flash Cards</h1>
 
     {% for deck in all_decks %}
-    <li><a href="{{ url_for('flash_cards.view_Deck', deck_id=deck.id) }}">{{ deck.name }}</a></li>
+    <li class = "dks"><a href="{{ url_for('flash_cards.view_Deck', deck_id=deck.id) }}">{{ deck.name }}</a></li>
     {% endfor %}
 
     <!-- Clickable icon -->
