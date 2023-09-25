@@ -6,11 +6,12 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}">
 {% endblock head %}
 
-{% for deck in decks %}
-    <li><a href="{{ url_for('view_deck', deck_id=deck.id) }}">{{ deck.name }}</a></li>
-{% endfor %}
-
 
 {% block body %}
-    <h1 style= "margin-top: 200px; text-shadow: 50px, 50px, 65px, #000000;">Browse Flash Cards</h1>
+    <h1 style= "margin-top: 200px; text-shadow: 50px, 50px, 65px, #000000;">Browse Flash Cards111</h1>
+<ul>
+    {% for deck in allDecks1 %}
+        <li><a href="{{ url_for('view_deck', deck_id=deck.id) }}">{{ deck.name }}</a></li>
+    {% endfor %}
+</ul>
 {% endblock body %}

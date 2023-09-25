@@ -13,8 +13,11 @@ from . import flash_cards_blueprint # blueprint
 @flash_cards_blueprint.route('/home')
 @login_required
 def home():
-   allDecks = Deck.query.all()
-   return render_template('flashCards/home.html', allDecks = allDecks)
+   allDecks1 = Deck.query.all()
+   print(allDecks1)
+   #allDecks1 = [{'id':'1','name':'11'},{'id':'2','name':'22'}]
+   return render_template('/flashCards/home.html', allDecks1 =allDecks1)
+   # return redirect(url_for('flash_cards.home', allDecks = allDecks))
 
 
 @flash_cards_blueprint.route('/view_Deck/<int:deck_id>')
@@ -22,7 +25,7 @@ def home():
 def view_Deck(deck_id):
    deck = Deck.query.get_or_404(deck_id)
    flashcards = deck.flashCard
-   return render_template('view_deck.html', deck=deck, flashcards=flashcards)# use this to diplay the correct set of flash cards
+   return render_template('/flashCards/view_deck.html', deck=deck, flashcards=flashcards)# use this to diplay the correct set of flash cards
 
 
 
@@ -34,15 +37,15 @@ def create_deck():
        deck = Deck(
            name=form.name.data,
            private=form.private.data,
-           creator_id=1  # Replace this later with logged-in user ID
+           creator_id= current_user.id,  # Replace this later with logged-in user ID
        )
        db.session.add(deck)
-       db.session.flush()
+       db.session.commit()
 
 
        return redirect(url_for('flashCards.home'))
   
-   return render_template('flashCards/create_deck.html', form=form)# creates a new deck
+   return render_template('/flashCards/create_deck.html', form=form)# creates a new deck
 
 
 @flash_cards_blueprint.route('/create_Flash_Cards/<int:deck_id>', methods=['GET', 'POST'])
@@ -54,7 +57,7 @@ def create_Flash_Cards(deck_id):
        flashCard = FlashCard(
            question = form.question.data,
            answer = form.answer.data,
-           deck_id= deck.id
+           deck_id= deck_id
    )
        db.session.add(flashCard)
        db.session.commit()
@@ -63,4 +66,4 @@ def create_Flash_Cards(deck_id):
 
        return redirect(url_for('flashCards.view_deck', deck_id = deck_id))
   
-   return render_template('flashCards/createFC.html', form = form)# this def creates new flashcards in the set selected
+   return render_template('/flashCards/createFC.html', form = form)# this def creates new flashcards in the set selected
