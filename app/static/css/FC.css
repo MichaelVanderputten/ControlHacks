@@ -3,7 +3,7 @@
   }
 
 .flash-card{
-  border-color: #006e0f;
+  border-color: #ff8800;
     border-width: 5px;
     border-radius: 25px;
     border-style: outset;
@@ -12,16 +12,16 @@
     margin-top: 5px;
     margin-bottom: 5px;
     padding: 10px;
-    background-color: #62ff8e5e;
+    background-color: #ffa6005e;
 }
 
 .flash-card:hover:not(.active){
   border-style: outset;
-  background-color:#62ff8e5e;
+  background-color:#ff88005e;
 }
 .flash-card:hover:not(.active){
   border-style: inset;
-  background-color: #0090295e;
+  background-color: #ff7b005e;
 }
 
 .front{
@@ -37,7 +37,7 @@
 }
 
 .addCard{
-  border-color: #006e0f;
+  border-color: #ff8800;
   border-width: 5px;
   border-radius: 25px;
   border-style: outset;
@@ -46,7 +46,7 @@
   margin-top: 5px;
   margin-bottom: 5px;
   padding: 10px;
-  background-color: #62ff8e5e;
+  background-color: #ffa6005e;
 }
 
 .addCard a{
