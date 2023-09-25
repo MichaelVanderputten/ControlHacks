@@ -3,7 +3,7 @@
   }
 
 .flash-card{
-  border-color: rgb(0, 110, 15);
+  border-color: #006e0f;
     border-width: 5px;
     border-radius: 25px;
     border-style: outset;
@@ -37,7 +37,7 @@
 }
 
 .addCard{
-  border-color: rgb(0, 110, 15);
+  border-color: #006e0f;
   border-width: 5px;
   border-radius: 25px;
   border-style: outset;
