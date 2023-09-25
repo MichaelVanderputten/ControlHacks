@@ -1,3 +1,8 @@
+body {
+  padding: 30px;
+  padding-top: 0;
+}
+
 #user-icon-container {
   position: fixed;
   bottom: 10px;
@@ -88,9 +93,10 @@
 }
 
 
-h1{
+h1, h3{
   margin-top: 50px;
   text-align: center;
+  color: white;
 }
 #body-text {
   padding: 10px 80px;
@@ -109,3 +115,20 @@ p {
   color: white;
   line-height: 1.5;
 }
+
+.group-photo-container {
+  width: 100%; /* Adjust as needed */
+  display: flex;
+  justify-content: center;
+  padding: 20px; /* You can specify the amount of padding */
+}
+
+.group-photo {
+  width: 50%; /* Adjust as needed */
+  height: auto;
+}
+
+.blank-space {
+  min-height: 10em;
+}
+

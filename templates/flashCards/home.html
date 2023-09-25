@@ -9,13 +9,13 @@
 {% block body %}
     <h1>Browse Flash Cards</h1>
 
-    <h3>Your Decks</h3>
+    <h3>Your Decks:</h3>
 
     {% for deck in user_all_decks %}
     <li class = "dks"><a href="{{ url_for('flash_cards.view_Deck', deck_id=deck.id) }}">{{ deck.name }}</a></li>
     {% endfor %}
 
-    <h3>Browse Decks</h3>
+    <h3>Browse Decks:</h3>
 
     {% for deck in all_decks %}
     <li class="dks">
