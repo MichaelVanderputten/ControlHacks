@@ -3,7 +3,7 @@
 {% block title %} Create FC {% endblock title %}
 
 {% block head %}
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/FC.css') }}">
 {% endblock head %}
 
 
@@ -11,11 +11,17 @@
     <h1 style= "margin-top: 200px; text-shadow: 50px, 50px, 65px, #000000;">View Deck {{ deck }}</h1>
 
     {% for flashCard in flashcards %}
-    <strong>{{ flashCard.question }}</strong>
-    <form action="{{ url_for('flash_cards.delete_FlashCard', flashcard_id=flashCard.id, deck_id=deck.id) }}" method="post" style="display:inline;">
-        <button type="submit">Delete</button>
-    </form>
-    <p>{{ flashCard.answer }}</p>
+    <div class="flash-card" onclick="toggleCard(this)">
+        <div class="front">
+            <p>{{ flashCard.question }}</p>
+        </div>
+        <div class="back" style="display: none;">
+            <p>{{ flashCard.answer }}</p>
+        </div>
+        <form action="{{ url_for('flash_cards.delete_FlashCard', flashcard_id=flashCard.id, deck_id=deck.id) }}" method="post" style="display:inline;">
+            <button type="submit">Delete</button>
+        </form>
+    </div>
 {% endfor %}
 
    <a href ="{{ url_for('flash_cards.create_Flash_Cards', deck_id=deck.id) }}">create flashcard</a>
@@ -23,5 +29,18 @@
 {% endblock body %}
 
 {% block scripts %}
-
+<script>
+    function toggleCard(flashCard) {
+    const front = flashCard.querySelector('.front');
+    const back = flashCard.querySelector('.back');
+    
+    if (front.style.display === 'none') {
+        front.style.display = 'block';
+        back.style.display = 'none';
+    } else {
+        front.style.display = 'none';
+        back.style.display = 'block';
+    }
+}
+</script>
 {% endblock scripts %}
