@@ -7,7 +7,7 @@
 {% endblock head %}
 
 {% block body %}
-    <div class="content"> <!-- needs a better name lol -->
+    <div class="content-section"> <!-- needs a better name lol -->
         <form method="POST" action="">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
@@ -30,7 +30,7 @@
         </form>
         <div class="border-top pt-3">
             <small class="text-muted">
-                Need An Account? <a class="ml-2" href="{{ url_for('user.register') }}">Sign Up Now</a>
+                Need An Account? <a class="ml-2" href="{{ url_for('user.register') }}" style="color: #ff8c00;">Sign Up Now</a>
             </small>
         </div>
     </div>

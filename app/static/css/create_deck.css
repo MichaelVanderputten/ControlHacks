@@ -1,20 +1,20 @@
 .askDeck{
-    border-width: 10px;
+    border-width: 2px;
     padding-top: 40px;
     padding-bottom: 40px;
-    border-radius: 10px;
-    border-color: rgb(26, 105, 0);
+    border-radius: 5px;
+    border-color: #F59500;
     text-align: center;
     margin-left: 400px;
     margin-right: 400px;
     border-style: solid;
-    background-color: rgba(0, 255, 102, 0.44);
+    background-color: #1B1B1B;
 }
 input{
     font-size: large;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: Black;
-    border-radius: 20px;
+    border-radius: 5px;
 }
 
 

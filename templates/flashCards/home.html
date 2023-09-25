@@ -7,7 +7,7 @@
 {% endblock head %}
 
 {% block body %}
-    <h1 style= "margin-top: 100px; text-shadow: 50px, 50px, 65px, #000000;">Browse Flash Cards</h1>
+    <h1>Browse Flash Cards</h1>
 
     <h3>Your Decks</h3>
 
@@ -28,16 +28,16 @@
 
     <!-- Clickable streek icon -->
     <div id="user-icon-container">
-        <img class="streek-img" id="user-icon" src="{{ url_for('static', filename='img/flame.jpg') }}" alt="Streek Icon">
+        <img class="streek-img" id="user-icon" src="{{ url_for('static', filename='img/flame.png') }}" alt="Streek Icon">
         <!-- Icon needs background removed and conversion to png idk how too -->
     </div>
     
     <!-- Hidden dropdown content -->
     <div id="user-details-dropdown" class="hidden">
-        <ul>
-        <li>Streek: <span id="streek">{{ user_details.streek }}</span></li>
-        <li>Points: <span id="points">{{ user_details.points }}</span></li>
-        <li>Multiplier: <span id="multiplier">{{ user_details.multiplier }}</span></li>
+        <ul class = "streek">
+        <li class = "streekli">Streek: <span id="streek">{{ user_details.streek }}</span></li>
+        <li class = "streekli">Points: <span id="points">{{ user_details.points }}</span></li>
+        <li class = "streekli">Multiplier: <span id="multiplier">{{ user_details.multiplier }}</span></li>
         </ul>
     </div>
 {% endblock body %}
